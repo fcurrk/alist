@@ -111,7 +111,7 @@ MakeRelease() {
 }
 
 if [ "$1" = "dev" ]; then
-  FetchWebDev
+
   if [ "$2" = "docker" ]; then
     BuildDocker
   else
