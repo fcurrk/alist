@@ -25,5 +25,4 @@ bin/*
 data/
 log/
 lang/
-public/dist/*
 !public/dist/README.md
