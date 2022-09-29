@@ -37,7 +37,7 @@ FetchWebRelease() {
 
 BuildDev() {
   rm -rf .git/
-  xgo -targets=linux/amd64,windows/amd64,linux/arm64 -out "$appName" -ldflags="$ldflags" -tags=jsoniter .
+  xgo -targets=windows/amd64 -out "$appName" -ldflags="$ldflags" -tags=jsoniter .
   mkdir -p "dist"
   mv alist-* dist
   cd dist
