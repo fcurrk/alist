@@ -41,7 +41,7 @@ BuildDev() {
   mkdir -p "dist"
   mv alist-* dist
   cd dist
-  upx -9 ./alist-linux*
+  upx -9 ./alist-linux-amd64
   upx -9 ./alist-windows*
   find . -type f -print0 | xargs -0 md5sum >md5.txt
   cat md5.txt
