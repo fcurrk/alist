@@ -15,6 +15,7 @@ const (
 	BasePath     = "base_path"
 	SiteTitle    = "site_title"
 	Announcement = "announcement"
+	SiteBeian    = "site_beian"
 
 	Logo      = "logo"
 	Favicon   = "favicon"

@@ -1,1 +1,0 @@
-System.register(["./index-legacy.ef1ab517.js"],(function(e,r){"use strict";var t,n,a,c,u;return{setters:[e=>{t=e.d,n=e.e,a=e.a5,c=e.af,u=e.k}],execute:function(){e("I",(e=>{const[r,s]=t(!1);return n(u,{get when(){return!r()},get fallback(){return e.fallbackErr},get children(){return n(a,c(e,{onError:()=>{s(!0)}}))}})}))}}}));

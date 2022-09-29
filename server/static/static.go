@@ -36,6 +36,7 @@ func InitIndex() {
 func UpdateIndex() {
 	favicon := setting.GetStr(conf.Favicon)
 	title := setting.GetStr(conf.SiteTitle)
+	sitebeian := setting.GetStr(conf.SiteBeian)
 	customizeHead := setting.GetStr(conf.CustomizeHead)
 	customizeBody := setting.GetStr(conf.CustomizeBody)
 	mainColor := setting.GetStr(conf.MainColor)

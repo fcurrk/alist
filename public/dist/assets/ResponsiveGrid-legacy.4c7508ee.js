@@ -1,1 +1,0 @@
-System.register(["./index-legacy.ef1ab517.js"],(function(e,t){"use strict";var r,i;return{setters:[e=>{r=e.e,i=e.bX}],execute:function(){e("R",(e=>r(i,{w:"$full",gap:"$2",templateColumns:{"@initial":"1fr","@lg":"repeat(auto-fit, minmax(424px, 1fr))"},get children(){return e.children}})))}}}));
