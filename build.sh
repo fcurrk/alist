@@ -4,8 +4,8 @@ goVersion=$(go version | sed 's/go version //')
 gitAuthor=$(git show -s --format='format:%aN <%ae>' HEAD)
 gitCommit=$(git log --pretty=format:"%h" -1)
 
-version="3.0.4"
-webVersion="3.0.4"
+version="3.0.3"
+webVersion="3.0.3"
 
 echo "build version: $gitTag"
 
@@ -79,6 +79,9 @@ BuildRelease() {
   upx -9 ./alist-linux-amd64
   upx -9 ./alist-windows*
   mv alist-* build
+  cd build
+  find . -type f -print0 | xargs -0 md5sum >md5.txt
+  cat md5.txt
 }
 
 MakeRelease() {
@@ -112,7 +115,6 @@ elif [ "$1" = "release" ]; then
     BuildDocker
   else
     BuildRelease
-    MakeRelease
   fi
 else
   echo -e "Parameter error"
