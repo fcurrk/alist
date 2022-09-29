@@ -1,1 +1,0 @@
-import{f as e}from"./index.99bc3bca.js";import{b as o}from"./useTitle.a756c907.js";import{T as t}from"./Tasks.639cc71c.js";import"./useT.f3d4a10e.js";const s=()=>(o("manage.sidemenu.copy"),e(t,{type:"copy"}));export{s as default};
