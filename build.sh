@@ -4,13 +4,8 @@ goVersion=$(go version | sed 's/go version //')
 gitAuthor=$(git show -s --format='format:%aN <%ae>' HEAD)
 gitCommit=$(git log --pretty=format:"%h" -1)
 
-if [ "$1" = "dev" ]; then
-  version="3.0.3"
-  webVersion="3.0.3"
-else
-  version=$(git describe --abbrev=0 --tags)
-  webVersion=$(wget -qO- -t1 -T2 "https://api.github.com/repos/alist-org/alist-web/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
-fi
+version="3.0.3"
+webVersion="3.0.3"
 
 echo "build version: $gitTag"
 
