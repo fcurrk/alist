@@ -37,6 +37,7 @@ func UpdateIndex() {
 	favicon := setting.GetStr(conf.Favicon)
 	title := setting.GetStr(conf.SiteTitle)
 	sitebeian := setting.GetStr(conf.SiteBeian)
+	contactus := setting.GetStr(conf.ContactUs)
 	customizeHead := setting.GetStr(conf.CustomizeHead)
 	customizeBody := setting.GetStr(conf.CustomizeBody)
 	mainColor := setting.GetStr(conf.MainColor)
@@ -45,6 +46,7 @@ func UpdateIndex() {
 		"https://jsd.nn.ci/gh/alist-org/logo@main/logo.svg": favicon,
 		"Loading...":            title,
 		"<!-- site beian -->":     sitebeian,
+		"<!-- contact us -->":     contactus,
 		"main_color: undefined": fmt.Sprintf("main_color: '%s'", mainColor),
 	}
 	for k, v := range replaceMap1 {

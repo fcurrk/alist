@@ -16,6 +16,7 @@ const (
 	SiteTitle    = "site_title"
 	Announcement = "announcement"
 	SiteBeian    = "site_beian"
+	ContactUs    = "contact_us"
 
 	Logo      = "logo"
 	Favicon   = "favicon"
