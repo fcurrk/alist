@@ -1,1 +1,0 @@
-System.register(["./index-legacy.d7f2d2e0.js","./useTitle-legacy.d4702aaa.js","./useT-legacy.d0b23168.js"],(function(e,r){"use strict";var a,u,n,s;return{setters:[e=>{a=e.f,u=e.a9,n=e.ag},e=>{s=e.b},()=>{}],execute:function(){e("default",(()=>(s("manage.sidemenu.about"),a(n,{h:"$full",get children(){return a(u,{get children(){return t("home.footer.powered_by")}})}}))))}}}));

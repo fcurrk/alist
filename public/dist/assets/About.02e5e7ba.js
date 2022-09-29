@@ -1,0 +1,1 @@
+import{f as e,a9 as r,ag as o}from"./index.99bc3bca.js";import{u as a}from"./useT.f3d4a10e.js";import{b as n}from"./useTitle.a756c907.js";const f=()=>{n("manage.sidemenu.about");const t=a();return e(o,{h:"$full",get children(){return e(r,{get children(){return t("home.footer.powered_by")}})}})};export{f as default};
