@@ -44,6 +44,7 @@ func UpdateIndex() {
 	replaceMap1 := map[string]string{
 		"https://jsd.nn.ci/gh/alist-org/logo@main/logo.svg": favicon,
 		"Loading...":            title,
+		"<!-- site beian -->":     sitebeian,
 		"main_color: undefined": fmt.Sprintf("main_color: '%s'", mainColor),
 	}
 	for k, v := range replaceMap1 {
