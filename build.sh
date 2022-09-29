@@ -74,7 +74,7 @@ BuildRelease() {
     export CGO_ENABLED=1
     go build -o ./build/$appName-$os_arch -ldflags="$muslflags" -tags=jsoniter .
   done
-  xgo -out "$appName" -ldflags="$ldflags" -tags=jsoniter .
+  xgo -targets=linux/amd64,windows/amd64,linux/arm64 -out "$appName" -ldflags="$ldflags" -tags=jsoniter .
   # why? Because some target platforms seem to have issues with upx compression
   upx -9 ./alist-linux-amd64
   upx -9 ./alist-windows*
