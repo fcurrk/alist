@@ -1,1 +1,0 @@
-System.register(["./index-legacy.c9ec0d57.js","./useTitle-legacy.e8599bcd.js","./Tasks-legacy.1500c018.js","./useT-legacy.ab42b1cf.js"],(function(e,c){"use strict";var s,t,a;return{setters:[e=>{s=e.f},e=>{t=e.b},e=>{a=e.T},()=>{}],execute:function(){e("default",(()=>(t("manage.sidemenu.copy"),s(a,{type:"copy"}))))}}}));
