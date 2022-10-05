@@ -81,6 +81,7 @@ func InitialSettings() []model.SettingItem {
 		{Key: "default_page_size", Value: "30", Type: conf.TypeNumber, Group: model.SITE},
 		// style settings
 		{Key: conf.Logo, Value: "https://cdn.jsdelivr.net/gh/alist-org/logo@main/logo.svg", Type: conf.TypeText, Group: model.STYLE},
+		{Key: conf.LogoText, Value: "", Type: conf.TypeString, Group: model.STYLE},
 		{Key: conf.Favicon, Value: "https://cdn.jsdelivr.net/gh/alist-org/logo@main/logo.svg", Type: conf.TypeString, Group: model.STYLE},
 		{Key: conf.MainColor, Value: "#1890ff", Type: conf.TypeString, Group: model.STYLE},
 		{Key: "home_icon", Value: "🏠", Type: conf.TypeString, Group: model.STYLE},

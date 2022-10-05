@@ -41,6 +41,7 @@ func UpdateIndex() {
 	customizeHead := setting.GetStr(conf.CustomizeHead)
 	customizeBody := setting.GetStr(conf.CustomizeBody)
 	mainColor := setting.GetStr(conf.MainColor)
+	logotext := setting.GetStr(conf.LogoText)
 	conf.ManageHtml = conf.RawIndexHtml
 	replaceMap1 := map[string]string{
 		"https://jsd.nn.ci/gh/alist-org/logo@main/logo.svg": favicon,
@@ -48,6 +49,7 @@ func UpdateIndex() {
 		"<!-- site beian -->":     sitebeian,
 		"<!-- contact us -->":     contactus,
 		"main_color: undefined": fmt.Sprintf("main_color: '%s'", mainColor),
+		"<!-- logo text -->":     logotext,
 	}
 	for k, v := range replaceMap1 {
 		conf.ManageHtml = strings.Replace(conf.ManageHtml, k, v, 1)

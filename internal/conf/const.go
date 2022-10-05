@@ -19,6 +19,7 @@ const (
 	ContactUs    = "contact_us"
 
 	Logo      = "logo"
+        LogoText  = "logo_text"
 	Favicon   = "favicon"
 	MainColor = "main_color"
 
