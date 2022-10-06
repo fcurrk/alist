@@ -1,0 +1,1 @@
+import{f as r,o as a,a0 as t,a3 as o}from"./index.148a60fc.js";import{u as m}from"./useT.945b8470.js";import{I as s}from"./ImageWithError.c6a60433.js";const g=()=>{const e=m();return r(s,{maxH:"75vh",rounded:"$lg",get src(){return a.raw_url},get fallback(){return r(t,{})},get fallbackErr(){return r(o,{get msg(){return e("home.preview.failed_load_img")}})}})};export{g as default};
