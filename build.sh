@@ -7,7 +7,8 @@ gitCommit=$(git log --pretty=format:"%h" -1)
 version="3.1.1"
 webVersion="3.1.1"
 
-echo "build version: $gitTag"
+echo "backend version: $version"
+echo "frontend version: $webVersion"
 
 ldflags="\
 -w -s \
