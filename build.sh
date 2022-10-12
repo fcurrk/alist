@@ -4,8 +4,8 @@ goVersion=$(go version | sed 's/go version //')
 gitAuthor=$(git show -s --format='format:%aN <%ae>' HEAD)
 gitCommit=$(git log --pretty=format:"%h" -1)
 
-version="3.0.3"
-webVersion="3.0.3"
+version="3.1.1"
+webVersion="3.1.1"
 
 echo "build version: $gitTag"
 
