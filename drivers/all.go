@@ -1,10 +1,12 @@
 package drivers
 
 import (
+	_ "github.com/alist-org/alist/v3/drivers/115"
 	_ "github.com/alist-org/alist/v3/drivers/123"
 	_ "github.com/alist-org/alist/v3/drivers/139"
 	_ "github.com/alist-org/alist/v3/drivers/189"
 	_ "github.com/alist-org/alist/v3/drivers/189pc"
+	_ "github.com/alist-org/alist/v3/drivers/alist_v3"
 	_ "github.com/alist-org/alist/v3/drivers/aliyundrive"
 	_ "github.com/alist-org/alist/v3/drivers/aliyundrive_share"
 	_ "github.com/alist-org/alist/v3/drivers/baidu_netdisk"
@@ -21,6 +23,7 @@ import (
 	_ "github.com/alist-org/alist/v3/drivers/quark"
 	_ "github.com/alist-org/alist/v3/drivers/s3"
 	_ "github.com/alist-org/alist/v3/drivers/sftp"
+	_ "github.com/alist-org/alist/v3/drivers/smb"
 	_ "github.com/alist-org/alist/v3/drivers/teambition"
 	_ "github.com/alist-org/alist/v3/drivers/thunder"
 	_ "github.com/alist-org/alist/v3/drivers/uss"
