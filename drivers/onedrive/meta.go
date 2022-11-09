@@ -14,7 +14,7 @@ type Addition struct {
 	RedirectUri  string `json:"redirect_uri" required:"true" default:"https://tool.nn.ci/onedrive/callback"`
 	RefreshToken string `json:"refresh_token" required:"true"`
 	SiteId       string `json:"site_id"`
-	ChunkSize    int64  `json:"chunk_size" type:"number" default:"5"`
+	ChunkSize    int64  `json:"chunk_size" required:"true" type:"number" default:"5" help:"chunk size while uploading (unit: MB)"`
 }
 
 var config = driver.Config{
