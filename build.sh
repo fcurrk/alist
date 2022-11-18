@@ -5,8 +5,8 @@ gitAuthor=$(git show -s --format='format:%aN <%ae>' HEAD)
 gitCommit=$(git log --pretty=format:"%h" -1)
 gitTag=$(git describe --long --tags --dirty --always)
 
-version="3.4.0.3"
-webVersion="3.4.0.3"
+version="3.4.0.5"
+webVersion="3.4.0.5"
 
 echo "backend version: $version"
 echo "frontend version: $webVersion"
