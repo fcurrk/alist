@@ -1,1 +1,0 @@
-System.register(["./index-legacy.3639daf6.js","./useTitle-legacy.ce9f643a.js","./Tasks-legacy.cb614696.js","./useT-legacy.5c8be49f.js"],(function(e){"use strict";var n,t,u;return{setters:[function(e){n=e.f},function(e){t=e.b},function(e){u=e.T},function(){}],execute:function(){e("default",(function(){return t("manage.sidemenu.upload"),n(u,{type:"upload"})}))}}}));
