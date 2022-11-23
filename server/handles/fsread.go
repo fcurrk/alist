@@ -66,11 +66,11 @@ func FsList(c *gin.Context) {
 		}
 	}
 	c.Set("meta", meta)
-	if !canAccess(user, meta, req.Path, req.Password) {
+	if !common.CanAccess(user, meta, req.Path, req.Password) {
 		common.ErrorStrResp(c, "password is incorrect", 403)
 		return
 	}
-	if !user.CanWrite() && !canWrite(meta, req.Path) && req.Refresh {
+	if !user.CanWrite() && !common.CanWrite(meta, req.Path) && req.Refresh {
 		common.ErrorStrResp(c, "Refresh without permission", 403)
 		return
 	}
@@ -89,7 +89,7 @@ func FsList(c *gin.Context) {
 		Content:  toObjResp(objs, req.Path, isEncrypt(meta, req.Path)),
 		Total:    int64(total),
 		Readme:   getReadme(meta, req.Path),
-		Write:    user.CanWrite() || canWrite(meta, req.Path),
+		Write:    user.CanWrite() || common.CanWrite(meta, req.Path),
 		Provider: provider,
 	})
 }
@@ -117,7 +117,7 @@ func FsDirs(c *gin.Context) {
 		}
 	}
 	c.Set("meta", meta)
-	if !canAccess(user, meta, req.Path, req.Password) {
+	if !common.CanAccess(user, meta, req.Path, req.Password) {
 		common.ErrorStrResp(c, "password is incorrect", 403)
 		return
 	}
@@ -140,7 +140,7 @@ func filterDirs(objs []model.Obj) []DirResp {
 	for _, obj := range objs {
 		if obj.IsDir() {
 			dirs = append(dirs, DirResp{
-				Name:     obj.GetName(),
+				Name:     utils.MappingName(obj.GetName(), conf.FilenameCharMap),
 				Modified: obj.ModTime(),
 			})
 		}
@@ -153,23 +153,6 @@ func getReadme(meta *model.Meta, path string) string {
 		return meta.Readme
 	}
 	return ""
-}
-
-func canAccess(user *model.User, meta *model.Meta, path string, password string) bool {
-	// if is not guest, can access
-	if user.CanAccessWithoutPassword() {
-		return true
-	}
-	// if meta is nil or password is empty, can access
-	if meta == nil || meta.Password == "" {
-		return true
-	}
-	// if meta doesn't apply to sub_folder, can access
-	if !utils.PathEqual(meta.Path, path) && !meta.PSub {
-		return true
-	}
-	// validate password
-	return meta.Password == password
 }
 
 func isEncrypt(meta *model.Meta, path string) bool {
@@ -208,7 +191,7 @@ func toObjResp(objs []model.Obj, parent string, encrypt bool) []ObjResp {
 			tp = utils.GetFileType(obj.GetName())
 		}
 		resp = append(resp, ObjResp{
-			Name:     obj.GetName(),
+			Name:     utils.MappingName(obj.GetName(), conf.FilenameCharMap),
 			Size:     obj.GetSize(),
 			IsDir:    obj.IsDir(),
 			Modified: obj.ModTime(),
@@ -249,7 +232,7 @@ func FsGet(c *gin.Context) {
 		}
 	}
 	c.Set("meta", meta)
-	if !canAccess(user, meta, req.Path, req.Password) {
+	if !common.CanAccess(user, meta, req.Path, req.Password) {
 		common.ErrorStrResp(c, "password is incorrect", 403)
 		return
 	}
@@ -306,7 +289,7 @@ func FsGet(c *gin.Context) {
 	parentMeta, _ := db.GetNearestMeta(parentPath)
 	common.SuccessResp(c, FsGetResp{
 		ObjResp: ObjResp{
-			Name:     obj.GetName(),
+			Name:     utils.MappingName(obj.GetName(), conf.FilenameCharMap),
 			Size:     obj.GetSize(),
 			IsDir:    obj.IsDir(),
 			Modified: obj.ModTime(),
@@ -355,7 +338,7 @@ func FsOther(c *gin.Context) {
 		}
 	}
 	c.Set("meta", meta)
-	if !canAccess(user, meta, req.Path, req.Password) {
+	if !common.CanAccess(user, meta, req.Path, req.Password) {
 		common.ErrorStrResp(c, "password is incorrect", 403)
 		return
 	}
