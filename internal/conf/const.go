@@ -28,7 +28,7 @@ const (
 	AudioTypes = "audio_types"
 	VideoTypes = "video_types"
 	ImageTypes = "image_types"
-	//OfficeTypes   = "office_types"
+	// OfficeTypes   = "office_types"
 	ProxyTypes    = "proxy_types"
 	OfficeViewers = "office_viewers"
 	PdfViewers    = "pdf_viewers"
@@ -40,16 +40,22 @@ const (
 	CustomizeHead       = "customize_head"
 	CustomizeBody       = "customize_body"
 	LinkExpiration      = "link_expiration"
+	SignAll             = "sign_all"
 	PrivacyRegs         = "privacy_regs"
 	OcrApi              = "ocr_api"
 	FilenameCharMapping = "filename_char_mapping"
+
+	// index
+	SearchIndex = "search_index"
+	IgnorePaths = "ignore_paths"
 
 	// aria2
 	Aria2Uri    = "aria2_uri"
 	Aria2Secret = "aria2_secret"
 
 	// single
-	Token = "token"
+	Token         = "token"
+	IndexProgress = "index_progress"
 )
 
 const (

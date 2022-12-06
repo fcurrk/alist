@@ -2,53 +2,64 @@ package handles
 
 import (
 	"context"
-	"strconv"
 
-	"github.com/alist-org/alist/v3/internal/db"
-	"github.com/alist-org/alist/v3/internal/index"
+	"github.com/alist-org/alist/v3/internal/search"
 	"github.com/alist-org/alist/v3/server/common"
 	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
 )
 
+type BuildIndexReq struct {
+	Paths       []string `json:"paths"`
+	MaxDepth    int      `json:"max_depth"`
+	IgnorePaths []string `json:"ignore_paths"`
+}
+
 func BuildIndex(c *gin.Context) {
-	go func() {
-		// TODO: consider run build index as non-admin
-		user, _ := db.GetAdmin()
-		ctx := context.WithValue(c.Request.Context(), "user", user)
-		maxDepth, err := strconv.Atoi(c.PostForm("max_depth"))
-		if err != nil {
-			maxDepth = -1
-		}
-		indexPaths := []string{"/"}
-		ignorePaths := c.PostFormArray("ignore_paths")
-		index.BuildIndex(ctx, indexPaths, ignorePaths, maxDepth)
-	}()
-	common.SuccessResp(c)
-}
-
-func GetProgress(c *gin.Context) {
-	progress := index.ReadProgress()
-	common.SuccessResp(c, progress)
-}
-
-func Search(c *gin.Context) {
-	results := []string{}
-	query, exists := c.GetQuery("query")
-	if !exists {
-		common.SuccessResp(c, results)
+	var req BuildIndexReq
+	if err := c.ShouldBind(&req); err != nil {
+		common.ErrorResp(c, err, 400)
+		return
 	}
-	sizeStr, _ := c.GetQuery("size")
-	size, err := strconv.Atoi(sizeStr)
-	if err != nil {
-		size = 10
+	if search.Running.Load() {
+		common.ErrorStrResp(c, "index is running", 400)
+		return
 	}
-	searchResults, err := index.Search(query, size)
+	ignorePaths, err := search.GetIgnorePaths()
 	if err != nil {
 		common.ErrorResp(c, err, 500)
 		return
 	}
-	for _, documentMatch := range searchResults.Hits {
-		results = append(results, documentMatch.Fields["Path"].(string))
+	ignorePaths = append(ignorePaths, req.IgnorePaths...)
+	go func() {
+		ctx := context.Background()
+		err := search.Clear(ctx)
+		if err != nil {
+			log.Errorf("clear index error: %+v", err)
+			return
+		}
+		err = search.BuildIndex(context.Background(), req.Paths, ignorePaths, req.MaxDepth, true)
+		if err != nil {
+			log.Errorf("build index error: %+v", err)
+		}
+	}()
+	common.SuccessResp(c)
+}
+
+func StopIndex(c *gin.Context) {
+	if !search.Running.Load() {
+		common.ErrorStrResp(c, "index is not running", 400)
+		return
 	}
-	common.SuccessResp(c, results)
+	search.Quit <- struct{}{}
+	common.SuccessResp(c)
+}
+
+func GetProgress(c *gin.Context) {
+	progress, err := search.Progress()
+	if err != nil {
+		common.ErrorResp(c, err, 500)
+		return
+	}
+	common.SuccessResp(c, progress)
 }

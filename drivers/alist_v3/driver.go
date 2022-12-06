@@ -30,6 +30,9 @@ func (d *AListV3) Init(ctx context.Context, storage model.Storage) error {
 	if err != nil {
 		return err
 	}
+	if len(d.Addition.Address) > 0 && string(d.Addition.Address[len(d.Addition.Address)-1]) == "/" {
+		d.Addition.Address = d.Addition.Address[0 : len(d.Addition.Address)-1]
+	}
 	// TODO login / refresh token
 	//op.MustSaveDriverStorage(d)
 	return err
@@ -46,7 +49,7 @@ func (d *AListV3) List(ctx context.Context, dir model.Obj, args model.ListArgs) 
 		SetResult(&resp).
 		SetHeader("Authorization", d.AccessToken).
 		SetBody(ListReq{
-			PageReq: common.PageReq{
+			PageReq: model.PageReq{
 				Page:    1,
 				PerPage: 0,
 			},

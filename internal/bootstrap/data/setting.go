@@ -25,12 +25,13 @@ func initSettings() {
 			settings[i].Flag = model.DEPRECATED
 		}
 	}
-	if settings != nil && len(settings) > 0 {
-		err = db.SaveSettingItems(settings)
-		if err != nil {
-			log.Fatalf("failed save settings: %+v", err)
-		}
-	}
+	// what's going on here???
+	//if settings != nil && len(settings) > 0 {
+	//	err = db.SaveSettingItems(settings)
+	//	if err != nil {
+	//		log.Fatalf("failed save settings: %+v", err)
+	//	}
+	//}
 	// insert new items
 	for i := range initialSettingItems {
 		v := initialSettingItems[i]
@@ -119,17 +120,23 @@ func InitialSettings() []model.SettingItem {
 		{Key: conf.CustomizeHead, Value: `<script src="https://polyfill.io/v3/polyfill.min.js?features=String.prototype.replaceAll"></script>`, Type: conf.TypeText, Group: model.GLOBAL, Flag: model.PRIVATE},
 		{Key: conf.CustomizeBody, Type: conf.TypeText, Group: model.GLOBAL, Flag: model.PRIVATE},
 		{Key: conf.LinkExpiration, Value: "0", Type: conf.TypeNumber, Group: model.GLOBAL, Flag: model.PRIVATE},
+		{Key: conf.SignAll, Value: "true", Type: conf.TypeBool, Group: model.GLOBAL, Flag: model.PRIVATE},
 		{Key: conf.PrivacyRegs, Value: `(?:(?:\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.){3}(?:\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])
 ([[:xdigit:]]{1,4}(?::[[:xdigit:]]{1,4}){7}|::|:(?::[[:xdigit:]]{1,4}){1,6}|[[:xdigit:]]{1,4}:(?::[[:xdigit:]]{1,4}){1,5}|(?:[[:xdigit:]]{1,4}:){2}(?::[[:xdigit:]]{1,4}){1,4}|(?:[[:xdigit:]]{1,4}:){3}(?::[[:xdigit:]]{1,4}){1,3}|(?:[[:xdigit:]]{1,4}:){4}(?::[[:xdigit:]]{1,4}){1,2}|(?:[[:xdigit:]]{1,4}:){5}:[[:xdigit:]]{1,4}|(?:[[:xdigit:]]{1,4}:){1,6}:)
 (?U)access_token=(.*)&`,
 			Type: conf.TypeText, Group: model.GLOBAL, Flag: model.PRIVATE},
 		{Key: conf.OcrApi, Value: "https://api.nn.ci/ocr/file/json", Type: conf.TypeString, Group: model.GLOBAL},
 		{Key: conf.FilenameCharMapping, Value: `{"/": "|"}`, Type: conf.TypeText, Group: model.GLOBAL},
+
 		// aria2 settings
 		{Key: conf.Aria2Uri, Value: "http://localhost:6800/jsonrpc", Type: conf.TypeString, Group: model.ARIA2, Flag: model.PRIVATE},
 		{Key: conf.Aria2Secret, Value: "", Type: conf.TypeString, Group: model.ARIA2, Flag: model.PRIVATE},
+
 		// single settings
 		{Key: conf.Token, Value: token, Type: conf.TypeString, Group: model.SINGLE, Flag: model.PRIVATE},
+		{Key: conf.SearchIndex, Value: "none", Type: conf.TypeSelect, Options: "database,bleve,none", Group: model.INDEX},
+		{Key: conf.IgnorePaths, Value: "", Type: conf.TypeText, Group: model.INDEX, Flag: model.PRIVATE, Help: `one path per line`},
+		{Key: conf.IndexProgress, Value: "{}", Type: conf.TypeText, Group: model.SINGLE, Flag: model.PRIVATE},
 	}
 	if flags.Dev {
 		initialSettingItems = append(initialSettingItems, []model.SettingItem{
