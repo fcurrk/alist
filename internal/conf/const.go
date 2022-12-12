@@ -15,11 +15,9 @@ const (
 	BasePath     = "base_path"
 	SiteTitle    = "site_title"
 	Announcement = "announcement"
-	SiteBeian    = "site_beian"
-	ContactUs    = "contact_us"
+	AllowIndexed   = "allow_indexed"
 
 	Logo      = "logo"
-        LogoText  = "logo_text"
 	Favicon   = "favicon"
 	MainColor = "main_color"
 
@@ -47,6 +45,7 @@ const (
 
 	// index
 	SearchIndex = "search_index"
+	IndexPaths  = "index_paths"
 	IgnorePaths = "ignore_paths"
 
 	// aria2

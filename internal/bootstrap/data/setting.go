@@ -80,6 +80,7 @@ func InitialSettings() []model.SettingItem {
 		{Key: conf.Announcement, Value: "### repo\nhttps://github.com/alist-org/alist", Type: conf.TypeText, Group: model.SITE},
 		{Key: "pagination_type", Value: "all", Type: conf.TypeSelect, Options: "all,pagination,load_more,auto_load_more", Group: model.SITE},
 		{Key: "default_page_size", Value: "30", Type: conf.TypeNumber, Group: model.SITE},
+		{Key: conf.AllowIndexed, Value: "false", Type: conf.TypeBool, Group: model.SITE},
 		// style settings
 		{Key: conf.Logo, Value: "https://cdn.jsdelivr.net/gh/alist-org/logo@main/logo.svg", Type: conf.TypeText, Group: model.STYLE},
 		{Key: conf.LogoText, Value: "", Type: conf.TypeString, Group: model.STYLE},
@@ -135,6 +136,7 @@ func InitialSettings() []model.SettingItem {
 		// single settings
 		{Key: conf.Token, Value: token, Type: conf.TypeString, Group: model.SINGLE, Flag: model.PRIVATE},
 		{Key: conf.SearchIndex, Value: "none", Type: conf.TypeSelect, Options: "database,bleve,none", Group: model.INDEX},
+		{Key: conf.IndexPaths, Value: "/", Type: conf.TypeText, Group: model.INDEX, Flag: model.PRIVATE, Help: `one path per line`},
 		{Key: conf.IgnorePaths, Value: "", Type: conf.TypeText, Group: model.INDEX, Flag: model.PRIVATE, Help: `one path per line`},
 		{Key: conf.IndexProgress, Value: "{}", Type: conf.TypeText, Group: model.SINGLE, Flag: model.PRIVATE},
 	}
