@@ -15,9 +15,11 @@ const (
 	BasePath     = "base_path"
 	SiteTitle    = "site_title"
 	Announcement = "announcement"
-	AllowIndexed = "allow_indexed"
-
+	AllowIndexed   = "allow_indexed"
+	SiteBeian    = "site_beian"
+	ContactUs    = "contact_us"
 	Logo      = "logo"
+	LogoText  = "logo_text"
 	Favicon   = "favicon"
 	MainColor = "main_color"
 
