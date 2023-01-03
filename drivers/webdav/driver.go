@@ -26,16 +26,11 @@ func (d *WebDav) Config() driver.Config {
 }
 
 func (d *WebDav) GetAddition() driver.Additional {
-	return d.Addition
+	return &d.Addition
 }
 
-func (d *WebDav) Init(ctx context.Context, storage model.Storage) error {
-	d.Storage = storage
-	err := utils.Json.UnmarshalFromString(d.Storage.Addition, &d.Addition)
-	if err != nil {
-		return err
-	}
-	err = d.setClient()
+func (d *WebDav) Init(ctx context.Context) error {
+	err := d.setClient()
 	if err == nil {
 		d.cron = cron.NewCron(time.Hour * 12)
 		d.cron.Do(func() {
@@ -66,11 +61,6 @@ func (d *WebDav) List(ctx context.Context, dir model.Obj, args model.ListArgs) (
 		}, nil
 	})
 }
-
-//func (d *WebDav) Get(ctx context.Context, path string) (model.Obj, error) {
-//	// this is optional
-//	return nil, errs.NotImplement
-//}
 
 func (d *WebDav) Link(ctx context.Context, file model.Obj, args model.LinkArgs) (*model.Link, error) {
 	url, header, err := d.client.Link(file.GetPath())
@@ -108,6 +98,7 @@ func (d *WebDav) Put(ctx context.Context, dstDir model.Obj, stream model.FileStr
 		r.Header.Set("Content-Type", stream.GetMimetype())
 		r.ContentLength = stream.GetSize()
 	}
+	// TODO: support cancel
 	err := d.client.WriteStream(path.Join(dstDir.GetPath(), stream.GetName()), stream, 0644, callback)
 	return err
 }

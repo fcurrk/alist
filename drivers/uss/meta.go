@@ -16,14 +16,13 @@ type Addition struct {
 }
 
 var config = driver.Config{
-	Name:      "USS",
-	LocalSort: true,
-}
-
-func New() driver.Driver {
-	return &USS{}
+	Name:        "USS",
+	LocalSort:   true,
+	DefaultRoot: "/",
 }
 
 func init() {
-	op.RegisterDriver(config, New)
+	op.RegisterDriver(func() driver.Driver {
+		return &USS{}
+	})
 }

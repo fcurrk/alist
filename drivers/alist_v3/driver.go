@@ -10,7 +10,6 @@ import (
 	"github.com/alist-org/alist/v3/drivers/base"
 	"github.com/alist-org/alist/v3/internal/driver"
 	"github.com/alist-org/alist/v3/internal/model"
-	"github.com/alist-org/alist/v3/pkg/utils"
 	"github.com/alist-org/alist/v3/server/common"
 )
 
@@ -24,19 +23,14 @@ func (d *AListV3) Config() driver.Config {
 }
 
 func (d *AListV3) GetAddition() driver.Additional {
-	return d.Addition
+	return &d.Addition
 }
 
-func (d *AListV3) Init(ctx context.Context, storage model.Storage) error {
-	d.Storage = storage
-	err := utils.Json.UnmarshalFromString(d.Storage.Addition, &d.Addition)
-	if err != nil {
-		return err
-	}
+func (d *AListV3) Init(ctx context.Context) error {
 	d.Addition.Address = strings.TrimSuffix(d.Addition.Address, "/")
 	// TODO login / refresh token
 	//op.MustSaveDriverStorage(d)
-	return err
+	return nil
 }
 
 func (d *AListV3) Drop(ctx context.Context) error {
@@ -76,11 +70,6 @@ func (d *AListV3) List(ctx context.Context, dir model.Obj, args model.ListArgs) 
 	}
 	return files, nil
 }
-
-//func (d *AList) Get(ctx context.Context, path string) (model.Obj, error) {
-//	// this is optional
-//	return nil, errs.NotImplement
-//}
 
 func (d *AListV3) Link(ctx context.Context, file model.Obj, args model.LinkArgs) (*model.Link, error) {
 	url := d.Address + "/api/fs/get"
@@ -173,7 +162,7 @@ func (d *AListV3) Put(ctx context.Context, dstDir model.Obj, stream model.FileSt
 	if err != nil {
 		return nil
 	}
-	_, err = base.RestyClient.R().
+	_, err = base.RestyClient.R().SetContext(ctx).
 		SetResult(&resp).
 		SetHeader("Authorization", d.AccessToken).
 		SetHeader("File-Path", path.Join(dstDir.GetPath(), stream.GetName())).

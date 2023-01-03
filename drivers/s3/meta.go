@@ -21,14 +21,13 @@ type Addition struct {
 
 var config = driver.Config{
 	Name:        "S3",
+	DefaultRoot: "/",
 	LocalSort:   true,
 	CheckStatus: true,
 }
 
-func New() driver.Driver {
-	return &S3{}
-}
-
 func init() {
-	op.RegisterDriver(config, New)
+	op.RegisterDriver(func() driver.Driver {
+		return &S3{}
+	})
 }

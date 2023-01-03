@@ -16,6 +16,9 @@ func Init(r *gin.Engine) {
 	common.SecretKey = []byte(conf.Conf.JwtSecret)
 	Cors(r)
 	r.Use(middlewares.StoragesLoaded)
+	if conf.Conf.MaxConnections > 0 {
+		r.Use(middlewares.MaxAllowed(conf.Conf.MaxConnections))
+	}
 	WebDav(r.Group("/dav"))
 
 	r.GET("/favicon.ico", handles.Favicon)
@@ -31,6 +34,8 @@ func Init(r *gin.Engine) {
 	auth.POST("/me/update", handles.UpdateCurrent)
 	auth.POST("/auth/2fa/generate", handles.Generate2FA)
 	auth.POST("/auth/2fa/verify", handles.Verify2FA)
+	auth.GET("/auth/github", handles.GithubLoginRedirect)
+	auth.GET("/auth/github_callback", handles.GithubLoginCallback)
 
 	// no need auth
 	public := api.Group("/public")
@@ -68,6 +73,7 @@ func admin(g *gin.RouterGroup) {
 	storage.POST("/delete", handles.DeleteStorage)
 	storage.POST("/enable", handles.EnableStorage)
 	storage.POST("/disable", handles.DisableStorage)
+	storage.POST("/load_all", handles.LoadAllStorages)
 
 	driver := g.Group("/driver")
 	driver.GET("/list", handles.ListDriverInfo)
@@ -110,6 +116,7 @@ func admin(g *gin.RouterGroup) {
 
 	index := g.Group("/index")
 	index.POST("/build", middlewares.SearchIndex, handles.BuildIndex)
+	index.POST("/update", middlewares.SearchIndex, handles.UpdateIndex)
 	index.POST("/stop", middlewares.SearchIndex, handles.StopIndex)
 	index.POST("/clear", middlewares.SearchIndex, handles.ClearIndex)
 	index.GET("/progress", middlewares.SearchIndex, handles.GetProgress)
