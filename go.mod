@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/SheltonZhu/115driver v1.0.13
 	github.com/Xhofe/go-cache v0.0.0-20220723083548-714439c8af9a
-	github.com/aws/aws-sdk-go v1.44.174
+	github.com/aws/aws-sdk-go v1.44.194
 	github.com/blevesearch/bleve/v2 v2.3.6
 	github.com/caarlos0/env/v6 v6.10.1
 	github.com/caarlos0/env/v7 v7.0.0
@@ -36,7 +36,7 @@ require (
 	gorm.io/driver/mysql v1.4.5
 	gorm.io/driver/postgres v1.4.6
 	gorm.io/driver/sqlite v1.4.4
-	gorm.io/gorm v1.24.3
+	gorm.io/gorm v1.24.5
 )
 
 require (
