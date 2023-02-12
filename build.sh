@@ -3,13 +3,14 @@ builtAt="$(date +'%F %T %z')"
 goVersion=$(go version | sed 's/go version //')
 gitAuthor=$(git show -s --format='format:%aN <%ae>' HEAD)
 gitCommit=$(git log --pretty=format:"%h" -1)
+gitTag=$(git describe --long --tags --dirty --always)
 
 if [ "$1" = "dev" ]; then
   version="dev"
   webVersion="dev"
 else
-  version=$(git describe --abbrev=0 --tags)
-  webVersion=$(wget -qO- -t1 -T2 "https://api.github.com/repos/alist-org/alist-web/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
+  version="3.10.1.2"
+  webVersion="3.10.1.2"
 fi
 
 echo "backend version: $version"
@@ -95,6 +96,9 @@ BuildRelease() {
   upx -9 ./alist-linux-amd64
   upx -9 ./alist-windows-amd64.exe
   mv alist-* build
+  cd build
+  find . -type f -print0 | xargs -0 md5sum >md5.txt
+  cat md5.txt
 }
 
 MakeRelease() {
@@ -122,19 +126,17 @@ MakeRelease() {
 }
 
 if [ "$1" = "dev" ]; then
-  FetchWebDev
+
   if [ "$2" = "docker" ]; then
     BuildDocker
   else
     BuildDev
   fi
 elif [ "$1" = "release" ]; then
-  FetchWebRelease
   if [ "$2" = "docker" ]; then
     BuildDocker
   else
     BuildRelease
-    MakeRelease
   fi
 else
   echo -e "Parameter error"
