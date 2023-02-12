@@ -9,8 +9,8 @@ if [ "$1" = "dev" ]; then
   version="dev"
   webVersion="dev"
 else
-  version="3.10.1.2"
-  webVersion="3.10.1.2"
+  version="3.10.1.3"
+  webVersion="3.10.1.3"
 fi
 
 echo "backend version: $version"
@@ -44,6 +44,8 @@ FetchWebRelease() {
 
 BuildWinArm64() {
   echo building for windows-arm64
+  chmod a+x $(pwd)/wrapper/zcc-arm64
+  chmod a+x $(pwd)/wrapper/zcxx-arm64
   export GOOS=windows
   export GOARCH=arm64
   export CC=$(pwd)/wrapper/zcc-arm64
