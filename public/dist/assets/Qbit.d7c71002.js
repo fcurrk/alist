@@ -1,0 +1,1 @@
+import{j as t,a3 as e}from"./index.790c8f59.js";import{b as r}from"./useTitle.ae182341.js";import{T as a}from"./Tasks.00690971.js";const o=()=>(r("manage.sidemenu.aria2"),t(e,{w:"$full",alignItems:"start",spacing:"$4",get children(){return[t(a,{type:"qbit_down"}),t(a,{type:"qbit_transfer"})]}}));export{o as default};
