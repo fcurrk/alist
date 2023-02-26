@@ -1,1 +1,0 @@
-import{j as a}from"./index.3ad216ba.js";import{b as e}from"./useTitle.c45be8d3.js";import{T as o}from"./Tasks.c24d4e40.js";const m=()=>(e("manage.sidemenu.upload"),a(o,{type:"upload"}));export{m as default};
