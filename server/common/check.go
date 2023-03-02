@@ -1,7 +1,6 @@
 package common
 
 import (
-	"path"
 	"regexp"
 	"strings"
 
@@ -14,13 +13,6 @@ func CanWrite(meta *model.Meta, path string) bool {
 		return false
 	}
 	return meta.WSub || meta.Path == path
-}
-
-func IsApply(metaPath, reqPath string, applySub bool) bool {
-	if utils.PathEqual(metaPath, reqPath) {
-		return true
-	}
-	return utils.IsSubPath(reqPath, metaPath) && applySub
 }
 
 func CanAccess(user *model.User, meta *model.Meta, reqPath string, password string) bool {
