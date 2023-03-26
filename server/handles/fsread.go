@@ -165,6 +165,9 @@ func getReadme(meta *model.Meta, path string) string {
 }
 
 func isEncrypt(meta *model.Meta, path string) bool {
+	if common.IsStorageSignEnabled(path) {
+		return true
+	}
 	if meta == nil || meta.Password == "" {
 		return false
 	}
@@ -260,16 +263,20 @@ func FsGet(c *gin.Context) {
 			return
 		}
 		if storage.Config().MustProxy() || storage.GetStorage().WebProxy {
+			query := ""
+			if isEncrypt(meta, reqPath) {
+				query = "?sign=" + sign.Sign(reqPath)
+			}
 			if storage.GetStorage().DownProxyUrl != "" {
 				rawURL = fmt.Sprintf("%s%s?sign=%s",
 					strings.Split(storage.GetStorage().DownProxyUrl, "\n")[0],
 					utils.EncodePath(reqPath, true),
 					sign.Sign(reqPath))
 			} else {
-				rawURL = fmt.Sprintf("%s/p%s?sign=%s",
+				rawURL = fmt.Sprintf("%s/p%s%s",
 					common.GetApiUrl(c.Request),
 					utils.EncodePath(reqPath, true),
-					sign.Sign(reqPath))
+					query)
 			}
 		} else {
 			// file have raw url
@@ -293,6 +300,7 @@ func FsGet(c *gin.Context) {
 		related = filterRelated(sameLevelFiles, obj)
 	}
 	parentMeta, _ := op.GetNearestMeta(parentPath)
+	thumb, _ := model.GetThumb(obj)
 	common.SuccessResp(c, FsGetResp{
 		ObjResp: ObjResp{
 			Name:     obj.GetName(),
@@ -301,6 +309,7 @@ func FsGet(c *gin.Context) {
 			Modified: obj.ModTime(),
 			Sign:     common.Sign(obj, parentPath, isEncrypt(meta, reqPath)),
 			Type:     utils.GetFileType(obj.GetName()),
+			Thumb:    thumb,
 		},
 		RawURL:   rawURL,
 		Readme:   getReadme(meta, reqPath),
