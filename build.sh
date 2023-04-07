@@ -8,8 +8,13 @@ if [ "$1" = "dev" ]; then
   version="dev"
   webVersion="dev"
 else
+<<<<<<< Updated upstream
   version=$(git describe --abbrev=0 --tags)
   webVersion=$(wget -qO- -t1 -T2 "https://api.github.com/repos/alist-org/alist-web/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
+=======
+  version="3.15.1.1"
+  webVersion="3.15.1.1"
+>>>>>>> Stashed changes
 fi
 
 echo "backend version: $version"
