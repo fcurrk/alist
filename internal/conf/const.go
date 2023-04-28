@@ -15,8 +15,10 @@ const (
 	Announcement = "announcement"
 	AllowIndexed = "allow_indexed"
 	AllowMounted = "allow_mounted"
-
+        SiteBeian    = "site_beian"
+        ContactUs    = "contact_us"
 	Logo      = "logo"
+        LogoText  = "logo_text"
 	Favicon   = "favicon"
 	MainColor = "main_color"
 
