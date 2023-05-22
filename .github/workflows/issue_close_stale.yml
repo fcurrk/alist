@@ -1,9 +1,6 @@
 name: Close inactive
 
-on:
-  schedule:
-    - cron: "0 0 */7 * *"
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   close-inactive:

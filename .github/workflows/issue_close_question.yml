@@ -1,9 +1,6 @@
 name: Close need info
 
-on:
-  schedule:
-    - cron: "0 0 */1 * *"
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   close-need-info:
