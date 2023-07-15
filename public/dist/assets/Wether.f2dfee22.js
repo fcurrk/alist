@@ -1,1 +1,0 @@
-import{d as t,j as s,by as n}from"./index.9759c040.js";const a=e=>{const r=t();return s(n,{get colorScheme(){return e.yes?"success":"danger"},get children(){return r(`global.${e.yes?"yes":"no"}`)}})};export{a as W};
