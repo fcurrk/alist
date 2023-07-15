@@ -47,7 +47,7 @@ func UpdateIndex() {
 	logotext := setting.GetStr(conf.LogoText)
 	conf.ManageHtml = conf.RawIndexHtml
 	replaceMap1 := map[string]string{
-		"https://jsd.nn.ci/gh/alist-org/logo@main/logo.svg": favicon,
+		"https://cdn.jsdelivr.net/gh/fcurrk/alist-web@main/images/logo.svg": favicon,
 		"Loading...":            title,
 		"<!-- site beian -->":     sitebeian,
 		"<!-- contact us -->":     contactus,
