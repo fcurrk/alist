@@ -79,6 +79,7 @@ BuildRelease() {
     url="${BASE}${i}.tgz"
     curl -L -o "${i}.tgz" "${url}"
     sudo tar xf "${i}.tgz" --strip-components 1 -C /usr/local
+    rm -f "${i}.tgz"
   done
   OS_ARCHES=(linux-musl-amd64 linux-musl-arm64 linux-musl-arm)
   CGO_ARGS=(x86_64-linux-musl-gcc aarch64-linux-musl-gcc arm-linux-musleabihf-gcc)
