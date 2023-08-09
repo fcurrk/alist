@@ -28,3 +28,5 @@ output/
 /lang/
 /daemon/
 /!public/dist/README.md
+
+.VSCodeCounter
