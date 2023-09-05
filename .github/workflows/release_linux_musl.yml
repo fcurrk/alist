@@ -1,8 +1,6 @@
 name: release_linux_musl
 
-on:
-  release:
-    types: [ published ]
+on: workflow_dispatch
 
 jobs:
   release_linux_musl:
