@@ -43,7 +43,7 @@ const (
 	OcrApi                  = "ocr_api"
 	FilenameCharMapping     = "filename_char_mapping"
 	ForwardDirectLinkParams = "forward_direct_link_params"
-	WebauthnLoginEnabled = "webauthn_login_enabled"
+	WebauthnLoginEnabled    = "webauthn_login_enabled"
 
 	// index
 	SearchIndex     = "search_index"
@@ -85,4 +85,9 @@ const (
 	AUDIO
 	TEXT
 	IMAGE
+)
+
+// ContextKey is the type of context keys.
+const (
+	NoTaskKey = "no_task"
 )
