@@ -1,1 +1,0 @@
-import{r as n,j as e,ao as o,m as s,y as c}from"./index.daf16ee3.js";const l=r=>{const[a,t]=n(!1);return e(c,{get when(){return!a()},get fallback(){return r.fallbackErr},get children(){return e(o,s(r,{onError:()=>{t(!0)}}))}})};export{l as I};
