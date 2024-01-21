@@ -3,13 +3,13 @@ module github.com/alist-org/alist/v3
 go 1.21
 
 require (
-	github.com/SheltonZhu/115driver v1.0.21
+	github.com/SheltonZhu/115driver v1.0.22
 	github.com/Xhofe/go-cache v0.0.0-20220723083548-714439c8af9a
 	github.com/Xhofe/rateg v0.0.0-20230728072201-251a4e1adad4
 	github.com/Xhofe/wopan-sdk-go v0.1.2
-	github.com/aliyun/aliyun-oss-go-sdk v2.2.10+incompatible
+	github.com/aliyun/aliyun-oss-go-sdk v3.0.2+incompatible
 	github.com/avast/retry-go v3.0.0+incompatible
-	github.com/aws/aws-sdk-go v1.49.15
+	github.com/aws/aws-sdk-go v1.49.18
 	github.com/blevesearch/bleve/v2 v2.3.10
 	github.com/caarlos0/env/v9 v9.0.0
 	github.com/charmbracelet/bubbles v0.17.1
@@ -50,11 +50,11 @@ require (
 	github.com/upyun/go-sdk/v3 v3.0.4
 	github.com/winfsp/cgofuse v1.5.1-0.20230130140708-f87f5db493b5
 	github.com/xhofe/tache v0.1.1
-	golang.org/x/crypto v0.17.0
-	golang.org/x/exp v0.0.0-20240103183307-be819d1f06fc
+	golang.org/x/crypto v0.18.0
+	golang.org/x/exp v0.0.0-20240110193028-0dcbfd608b1e
 	golang.org/x/image v0.15.0
-	golang.org/x/net v0.19.0
-	golang.org/x/oauth2 v0.15.0
+	golang.org/x/net v0.20.0
+	golang.org/x/oauth2 v0.16.0
 	golang.org/x/time v0.5.0
 	google.golang.org/appengine v1.6.8
 	gopkg.in/ldap.v3 v3.1.0
@@ -98,6 +98,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.0 // indirect
+	github.com/clbanning/mxj v1.8.4 // indirect
 	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
 	github.com/coreos/go-semver v0.3.1 // indirect
 	github.com/crackcomm/go-gitignore v0.0.0-20170627025303-887ab5e44cc3 // indirect
@@ -119,6 +120,7 @@ require (
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
+	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/go-tpm v0.9.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
@@ -152,6 +154,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/mozillazg/go-httpheader v0.4.0 // indirect
 	github.com/mr-tron/base58 v1.2.0 // indirect
 	github.com/mschoch/smat v0.2.0 // indirect
 	github.com/muesli/ansi v0.0.0-20211018074035-2e021307bc4b // indirect
@@ -183,6 +186,7 @@ require (
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/tencentyun/cos-go-sdk-v5 v0.7.45 // indirect
 	github.com/tklauser/go-sysconf v0.3.11 // indirect
 	github.com/tklauser/numcpus v0.6.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
@@ -194,8 +198,8 @@ require (
 	go.etcd.io/bbolt v1.3.7 // indirect
 	golang.org/x/arch v0.5.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
-	golang.org/x/sys v0.15.0 // indirect
-	golang.org/x/term v0.15.0 // indirect
+	golang.org/x/sys v0.16.0 // indirect
+	golang.org/x/term v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/api v0.134.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230803162519-f966b187b2e5 // indirect
