@@ -1,0 +1,1 @@
+import{cP as r,h as n,$ as a,Z as o}from"./index.16b5c5f1.js";const s=()=>{const[e]=r();return n(o,{get loading(){return e.loading},get children(){return n(a,{class:"word-wrap",get children(){var t;return(t=e())==null?void 0:t.content}})}})};export{s as default};
