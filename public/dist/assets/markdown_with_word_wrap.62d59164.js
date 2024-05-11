@@ -1,0 +1,1 @@
+import{c_ as n,h as r,a9 as a,a8 as o}from"./index.f7e440c1.js";const s=()=>{const[e]=n();return r(o,{get loading(){return e.loading},get children(){return r(a,{class:"word-wrap",get children(){var t;return(t=e())==null?void 0:t.content},toc:!0})}})};export{s as default};
