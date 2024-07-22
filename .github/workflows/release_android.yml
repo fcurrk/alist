@@ -1,6 +1,8 @@
 name: release_android
 
-on: workflow_dispatch
+on:
+  release:
+    types: [ published ]
 
 jobs:
   release_android:
@@ -26,8 +28,7 @@ jobs:
         run: |
           bash build.sh release android
 
-      - name: Release
-        uses: actions/upload-artifact@v3
+      - name: Upload assets
+        uses: softprops/action-gh-release@v2
         with:
-          name: alist-android
-          path: build
+          files: build/compress/*
