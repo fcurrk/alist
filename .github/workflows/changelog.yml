@@ -1,9 +1,6 @@
 name: auto changelog
 
-on:
-  push:
-    tags:
-      - 'v*'
+on: workflow_dispatch
 
 jobs:
   changelog:
