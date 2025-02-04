@@ -1,41 +1,19 @@
-package LenovoNasShare
+package github_releases
 
 import (
-	"encoding/json"
 	"time"
 
 	"github.com/alist-org/alist/v3/pkg/utils"
-
-	_ "github.com/alist-org/alist/v3/internal/model"
 )
-
-func (f *File) UnmarshalJSON(data []byte) error {
-	type Alias File
-	aux := &struct {
-		CreateAt int64 `json:"time"`
-		UpdateAt int64 `json:"chtime"`
-		*Alias
-	}{
-		Alias: (*Alias)(f),
-	}
-
-	if err := json.Unmarshal(data, aux); err != nil {
-		return err
-	}
-
-	f.CreateAt = time.Unix(aux.CreateAt, 0)
-	f.UpdateAt = time.Unix(aux.UpdateAt, 0)
-
-	return nil
-}
 
 type File struct {
 	FileName string    `json:"name"`
 	Size     int64     `json:"size"`
 	CreateAt time.Time `json:"time"`
 	UpdateAt time.Time `json:"chtime"`
-	Path     string    `json:"path"`
+	Url      string    `json:"url"`
 	Type     string    `json:"type"`
+	Path     string    `json:"path"`
 }
 
 func (f File) GetHash() utils.HashInfo {
@@ -47,11 +25,7 @@ func (f File) GetPath() string {
 }
 
 func (f File) GetSize() int64 {
-	if f.IsDir() {
-		return 0
-	} else {
-		return f.Size
-	}
+	return f.Size
 }
 
 func (f File) GetName() string {
@@ -71,12 +45,24 @@ func (f File) IsDir() bool {
 }
 
 func (f File) GetID() string {
-	return f.GetPath()
+	return f.Url
 }
 
-type Files struct {
-	Data struct {
-		List    []File `json:"list"`
-		HasMore bool   `json:"has_more"`
-	} `json:"data"`
+func (f File) Thumb() string {
+	return ""
+}
+
+type ReleasesData struct {
+	Files    []File    `json:"files"`
+	Size     int64     `json:"size"`
+	UpdateAt time.Time `json:"chtime"`
+	CreateAt time.Time `json:"time"`
+	Url      string    `json:"url"`
+}
+
+type Release struct {
+	Path     string // 挂载路径
+	RepoName string // 仓库名称
+	Version  string // 版本号, tag
+	ID       string // 版本ID
 }

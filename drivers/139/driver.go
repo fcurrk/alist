@@ -42,7 +42,11 @@ func (d *Yun139) Init(ctx context.Context) error {
 		if d.Authorization == "" {
 			return fmt.Errorf("authorization is empty")
 		}
-		d.cron = cron.NewCron(time.Hour * 24 * 7)
+		err := d.refreshToken()
+		if err != nil {
+			return err
+		}
+		d.cron = cron.NewCron(time.Hour * 12)
 		d.cron.Do(func() {
 			err := d.refreshToken()
 			if err != nil {
