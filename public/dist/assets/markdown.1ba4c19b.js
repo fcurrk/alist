@@ -1,0 +1,1 @@
+import{dI as r,h as n,af as a,cE as o,a3 as c,ae as s}from"./index.5f2c11f5.js";const u=()=>{const[e]=r();return n(s,{get loading(){return e.loading},get children(){return n(a,{get children(){var t;return(t=e())==null?void 0:t.content},get ext(){return o(c.obj.name)},toc:!0})}})};export{u as default};
