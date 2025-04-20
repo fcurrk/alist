@@ -8,8 +8,8 @@ if [ "$1" = "dev" ]; then
   version="dev"
   webVersion="dev"
 else
-  version="3.44.0.250415"
-  webVersion="3.44.0.250415"
+  version="3.44.0.250420"
+  webVersion="3.44.0.250420"
 fi
 
 echo "backend version: $version"
