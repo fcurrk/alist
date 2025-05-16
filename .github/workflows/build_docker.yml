@@ -64,7 +64,7 @@ jobs:
         if: github.event_name == 'push'
         uses: docker/login-action@v3
         with:
-          username: fcurrk
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
@@ -113,6 +113,6 @@ jobs:
       - name: Push commit
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.MY_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           repository: alist-org/with_aria2
