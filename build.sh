@@ -181,6 +181,9 @@ BuildReleaseLinuxMusl() {
     export CGO_ENABLED=1
     go build -o ./build/$appName-$os_arch -ldflags="$muslflags" -tags=jsoniter .
   done
+  cd build
+  find . -type f -print0 | xargs -0 md5sum >md5.txt
+  cat md5.txt
 }
 
 BuildReleaseLinuxMuslArm() {
@@ -214,6 +217,9 @@ BuildReleaseLinuxMuslArm() {
     export GOARM=${arm}
     go build -o ./build/$appName-$os_arch -ldflags="$muslflags" -tags=jsoniter .
   done
+  cd build
+  find . -type f -print0 | xargs -0 md5sum >md5.txt
+  cat md5.txt
 }
 
 BuildReleaseAndroid() {
@@ -235,6 +241,9 @@ BuildReleaseAndroid() {
     go build -o ./build/$appName-android-$os_arch -ldflags="$ldflags" -tags=jsoniter .
     android-ndk-r26b/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip ./build/$appName-android-$os_arch
   done
+  cd build
+  find . -type f -print0 | xargs -0 md5sum >md5.txt
+  cat md5.txt
 }
 
 BuildReleaseFreeBSD() {
@@ -258,6 +267,9 @@ BuildReleaseFreeBSD() {
     export CGO_LDFLAGS="-fuse-ld=lld"
     go build -o ./build/$appName-freebsd-$os_arch -ldflags="$ldflags" -tags=jsoniter .
   done
+  cd build
+  find . -type f -print0 | xargs -0 md5sum >md5.txt
+  cat md5.txt
 }
 
 MakeRelease() {
@@ -317,16 +329,12 @@ elif [ "$1" = "release" -o "$1" = "beta" ]; then
     BuildDockerMultiplatform
   elif [ "$2" = "linux_musl_arm" ]; then
     BuildReleaseLinuxMuslArm
-    MakeRelease "md5-linux-musl-arm.txt"
   elif [ "$2" = "linux_musl" ]; then
     BuildReleaseLinuxMusl
-    MakeRelease "md5-linux-musl.txt"
   elif [ "$2" = "android" ]; then
     BuildReleaseAndroid
-    MakeRelease "md5-android.txt"
   elif [ "$2" = "freebsd" ]; then
     BuildReleaseFreeBSD
-    MakeRelease "md5-freebsd.txt"
   elif [ "$2" = "web" ]; then
     echo "web only"
   else
