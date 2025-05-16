@@ -328,7 +328,6 @@ elif [ "$1" = "release" -o "$1" = "beta" ]; then
     echo "web only"
   else
     BuildRelease
-    MakeRelease "md5.txt"
   fi
 elif [ "$1" = "prepare" ]; then
   if [ "$2" = "docker-multiplatform" ]; then
