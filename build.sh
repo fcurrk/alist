@@ -152,6 +152,9 @@ BuildRelease() {
   cp ./alist-windows-amd64.exe ./alist-windows-amd64-upx.exe
   upx -9 ./alist-windows-amd64-upx.exe
   mv alist-* build
+  cd build
+  find . -type f -print0 | xargs -0 md5sum >md5.txt
+  cat md5.txt
 }
 
 BuildReleaseLinuxMusl() {
